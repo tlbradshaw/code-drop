@@ -1,6 +1,6 @@
 import time 
 import random
-
+import sys
 #console color
 W  = '\033[0m'  # white (normal)
 R  = '\033[31m' # red
@@ -23,24 +23,25 @@ def pi(places=10):
         n, na, d, da  = n+na, na+8, d+da, da+32
         t = t * n // d
         c += t
+##    print(c // (10 ** extra))
+##    print(len(repr(c // (10 ** extra))))
     return c // (10 ** extra)
 
-def picirc(radius, aspect_ratio=5):
+def picirc(radius, aspect_ratio=3):
     while True:
        #"Display the digit of pi in a circle of given radius"
        display_width = int(radius * aspect_ratio + 10)
-       pi_str = repr(pi(int(2 * radius ** 2 * aspect_ratio))) 
+       pi_str = repr(pi(int(2 * radius ** 2 * aspect_ratio)))
        pi_str = pi_str + random.choice(my_color)
        pos = 0
        for i in range(2 * radius):
            cols = int(0.5 + aspect_ratio * (radius**2 - (radius-(i+0.5))**2) ** 0.5)
-           print('t'+random.choice(my_color))
-           print(pi_str[pos:pos+cols].center(display_width)) 
+           print(pi_str[pos:pos+cols].center(display_width) + random.choice(my_color)) 
            pos += cols
-           time.sleep(.05)
+           time.sleep(.0125)
        print("\n\n\n")
-       time.sleep(3)
+       time.sleep(2)
        
-       picirc(16)
+      # picirc(24)
 if __name__ == '__main__':
-    picirc(16)
+    picirc(24)
